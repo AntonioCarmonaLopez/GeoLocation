@@ -1,0 +1,28 @@
+  #map {
+	background-color: #666;
+}
+  #cabecera {
+	background-image: url("gmap.png");
+	height: 50px;
+	border-width: thin;
+	border-style: solid;
+	border-style: none;
+}
+  #inicializar {
+	border-style: none;
+	position: absolute;
+	left: 200px;
+	top: 25px;
+}
+
+#map{
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute; /* posición absoluta a navegador */
+  top: 80px;      /* 50px debajo de borde de navegador */
+  left: 0;        /* ajusta a borde de navegador */
+  right: 0;
+  bottom: 0;
+  background: rgba(0,255,0,0.5); /* verde si no hay mapa */
+}

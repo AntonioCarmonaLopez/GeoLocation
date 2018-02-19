@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Instalador de Gmap</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="http://zeptojs.com/zepto.min.js" ></script>
+</head>
+
+<body>
+
+<div id="install">Estado de la instalación Gmap</div>
+
+<script>
+    var nameApp = "gmap 1.0";
+
+    $(document).ready(function() {
+
+      var gManifestName = location.href.replace("install.htm","") + 'manifest.webapp';
+
+      var request = navigator.mozApps.checkInstalled(gManifestName);
+
+      
+      request.onsuccess = function() {
+        if (request.result) {
+          // La app ya fue instalada.
+          $("#install").text("La app " + nameApp + " ya esta instalada");
+
+        } else {
+
+          // La app no esta instalada
+          $("#install").html("<input type='button' value='Instalar'>");
+
+          $("#install").click(function() {
+
+              var req = navigator.mozApps.install(gManifestName);
+
+              req.onsuccess = function(data) {
+                  $("#install").text("La app " + nameApp + " ha sido instalada").unbind('click');
+              }
+
+              req.onerror = function(errObj) {
+                  alert("Error al instalar " + nameApp + ": " + this.error.name);
+              }
+
+          });
+        }
+      }
+
+      request.onerror = function() {
+        alert("Error comprobando estado de la instalacion de " + nameApp + ": " + 
+               this.error.message);
+      }
+    });
+
+</script>
+
+
+</body>
+
+</html>
+
